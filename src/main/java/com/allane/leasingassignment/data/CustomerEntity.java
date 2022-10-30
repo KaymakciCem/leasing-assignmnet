@@ -1,6 +1,5 @@
 package com.allane.leasingassignment.data;
 
-import com.allane.leasingassignment.LeasingAssignmentApplication;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +12,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "customer")
 public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -27,5 +27,5 @@ public class CustomerEntity {
     @OneToMany(mappedBy = "customer",
             cascade = CascadeType.ALL,
             fetch= FetchType.EAGER)
-    Set<LeasingEntity> leasing;
+    Set<ContractEntity> leasing;
 }

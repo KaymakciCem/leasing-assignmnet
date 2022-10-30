@@ -11,9 +11,11 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "vehicle")
 public class VehicleEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String brand;
@@ -25,9 +27,13 @@ public class VehicleEntity {
     private String vehicleIdentificationNo;
 
     private BigDecimal price;
+//
+//    @OneToOne(mappedBy = "vehicle")
+//    private ContractEntity contract;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private LeasingEntity leasing;
+
+    @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL,
+              fetch = FetchType.LAZY, optional = false)
+    private ContractEntity contract;
+
 }
