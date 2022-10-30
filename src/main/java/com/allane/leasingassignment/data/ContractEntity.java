@@ -11,7 +11,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @Entity
-public class LeasingEntity {
+@Table(name = "contract")
+public class ContractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long contractNumber;
@@ -22,7 +23,8 @@ public class LeasingEntity {
     @JoinColumn(name = "customer_id")
     CustomerEntity customer;
 
-    @OneToOne(mappedBy = "leasing", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
     private VehicleEntity vehicle;
+
 }
